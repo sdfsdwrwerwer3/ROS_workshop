@@ -77,7 +77,7 @@ $ source devel/setup.bash
 $ export TURTLEBOT3_MODEL=waffle
 $ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
 ```
-![image](https://user-images.githubusercontent.com/112727443/235184988-517ccd64-b0e9-4379-aa40-9e1a3fdabee4.png)
+![](https://github.com/HerickDallAgnol/ROS_workshop/blob/main/turlebot1teleop.gif)
 
 # Simulação SLAM 
 
@@ -85,20 +85,63 @@ O SLAM (Simultaneous Localization and Mapping) é uma técnica para desenhar um 
 
 ## Mapeamento
 
-Iniciamos o TurtleBot3 World:
+Iniciamos o Roscore:
 ```
-$ source install/local_setup.sh
-$ export TURTLEBOT3_MODEL=waffle
-$ ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+$ cd catkin_ws
+$ roscore
 ```
 
-Em um novo terminal rodamos o Cartographer SLAM:
+Iniciamos o TurtleBot3 World:
 ```
-$ source install/local_setup.sh
+$ source devel/setup.bash
 $ export TURTLEBOT3_MODEL=waffle
-$ ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=True
+$ roslaunch turtlebot3_gazebo turtlebot3_world.launch
+```
+
+Em outro terminal rodamos a teleoperação:
+```
+$ source devel/setup.bash
+$ export TURTLEBOT3_MODEL=waffle
+$ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+```
+
+Em um novo terminal rodamos o gmapping:
+```
+$ source devel/setup.bash
+$ export TURTLEBOT3_MODEL=waffle
+$ roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping
 ```
 Dicas para criar um bom mapa:
   + Tente dirigir o mais devagar possível.
   + Evite dirigir linearmente e girar ao mesmo tempo.
   + Não dirija muito perto dos obstáculos.
+
+![image](https://user-images.githubusercontent.com/112727443/235554590-34173d73-3c36-4c64-8ea7-e592b1894fb4.png)
+
+## Navegação
+
+Iniciamos o Roscore:
+```
+$ cd catkin_ws
+$ roscore
+```
+
+Para navegação devemos abrir o TurtleBot3 World:
+```
+$ source devel/setup.bash
+$ export TURTLEBOT3_MODEL=waffle
+$ roslaunch turtlebot3_gazebo turtlebot3_world.launch
+```
+Em outro terminal rodamos o nodo de navegação:
+```
+$ source devel/setup.bash
+$ export TURTLEBOT3_MODEL=waffle
+$ roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/map.yaml
+```
+<sub>NOTA:map:= "Diretorio aonde foi salvo seu mapa" </sub>
+
+**No rviz:**
+
+Para realizar a navegação autonoma, deve se clicar em ***2D POSE ESTIMATE*** aonde estimamos a posição do nosso robô. Após isso podemos clicar em ***2D NAV GO*** selecionando um local para o robô navegar.
+
+![](https://github.com/HerickDallAgnol/ROS_workshop/blob/main/naveros1.gif)
