@@ -1,5 +1,4 @@
 # ROS_workshop
-![Badge em Desenvolvimento](https://img.shields.io/badge/Status-development-orange)
 ![Badge Ubunto](https://img.shields.io/badge/-Ubunto%2020.04-green)
 
 ![image](https://user-images.githubusercontent.com/112727443/235545198-45ac491a-5726-4d6b-ab7d-18c8c135a106.png)
@@ -8,7 +7,7 @@ O Robot Operating System (ROS) é um conjunto de bibliotecas de software e ferra
 
 Este "repositorio" contém instruções para:
 
-## [Instalação do ros: ](RO2_Install.md)
+## [Instalação do ros: ](RO2_Install.md) ![Badge em Desenvolvimento](https://img.shields.io/badge/Status-development-orange)
   + Instalação dos pacotes.
   + Configuração da workspace.
   
